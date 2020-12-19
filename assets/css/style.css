@@ -1,3 +1,4 @@
+/* header */
 header {
     display: flex;
     justify-content: space-between;
@@ -9,3 +10,19 @@ header h2 {
     color: black;
     padding: 0 20px;
 }
+/* end header */
+
+/* start page JS */
+.start-page {
+    text-align: center;
+}
+
+.h2 {
+    text-align: center;
+}
+
+.start-button {
+    display: flex;
+    justify-content: center;
+}
+/* end of start page JS */

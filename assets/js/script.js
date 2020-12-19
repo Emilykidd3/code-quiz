@@ -1,16 +1,30 @@
 // global variables
 var startDiv = document.querySelector(".start-page-div");
-var timerEl = document.getElementById('timer');
+var timerEl = document.getElementById('.timer');
+var quizDiv = document.getElementById('.question-page-div')
 
 
 // array of objects with questions/options/answer
 var quizQuestions = [
     {   question: "Commonly used data types DO NOT include:",
-        answers: ["A. Strings", "B. Booleans", "C. Alerts", "D.numbers"],
+        answers = ["A. Strings", "B. Booleans", "C. Alerts", "D.numbers"],
         correctAnswer: "B. Booleans"
-    }, {question: "The condition in an if/else statement is inclosed within ________.",
+    }, 
+    {   question: "The condition in an if/else statement is inclosed within ________.",
         answers: ["A. Quotes", "B. Curly brackets", "C. Parentheses", "D. Square brackets"],
         correctAnswer: "C. Parentheses"
+    }, 
+    {   question: "Arrays in JavaScript can be used to store ______.",
+        answers = ["A. Numbers and strings", "B. Other arrays", "C. Booleans", "D. All of the above"],
+        correctAnswer: "D. All of the above"
+    }, 
+    {   question: "String values must be enclosed within ______ when being assigned to variables.",
+        answers = ["A. Commas", "B. Curly brackets", "C. Quotes", "D. Parentheses"],
+        correctAnswer: "C. Quotes"
+    }, 
+    {   question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers = ["A. JavaScript", "B. Terminal/ bash", "C. for loops", "D. console.log"],
+        correctAnswer: "D. console.log"
     }
 ];
 
@@ -31,8 +45,7 @@ var startPage = function() {
     startButton.className = "start-button"
     startDiv.appendChild(startButtonDiv);
 }
-
-startPage();
+// startPage();
 
 // create coundown for when startQuizButton is clicked
 var countdown = function() {
@@ -53,9 +66,20 @@ var countdown = function() {
 // make for loop for questions with an array of objects containing question, options, and answer
 var runQuestions = function() {
     for (var i = 0; i < quizQuestions.length; i++) {
-        
+        var askQuestion = document.createElement("h1");
+        askQuestion.className = "h1"
+        askQuestion.textContent = quizQuestions[i].question;
+        quizDiv.appendChild(askQuestion);
+        for (var x = 0; x < quizQuestions[i].answers.length; x++) {
+            var answerOptions = document.createElement("button");
+            answerOptions.className = "answer-buttons";
+            // i know this is not right but idk what to put LOL :/
+            answerOptions.textContent = quizQuestions[i].answers[x];
+            quizDiv.appendChild(answerOptions);
+        }
     }
 }
+runQuestions();
 // make coundown subtract time when an answer is incorrect
 
 // show end page when time is up or all questions are answered

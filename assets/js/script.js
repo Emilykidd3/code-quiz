@@ -6,6 +6,10 @@ var startButton = document.querySelector("#start-button");
 var questionEl = document.querySelector("#question");
 var answerOptionsEl = document.querySelector("#answers");
 var answerFeedback = document.querySelector("#feedback");
+var highScorePage = document.querySelector("#highscore-div");
+var finalScore = document.querySelector("#final-score");
+var initials = document.querySelector("#initials");
+var SubmitInitialsButton = document.querySelector("#submit-initials-button");
 
 var currentQuestionIndex = 0;
 var timeLeft = 75;
@@ -56,14 +60,15 @@ var startQuiz = function() {
     quizDiv.removeAttribute("class");
 }
 
-var endPage = function() {
-    window.alert="done!"
+var enterInitialsPage = function() {
+    highScorePage.removeAttribute("class");
+    finalScore.textContent = timeLeft;
 }
 
 // make for loop for questions with an array of objects containing question, options, and answer
 var getQuestion = function() {
     if (currentQuestionIndex === quizQuestions.length) {
-        endPage();
+        enterInitialsPage();
         quizDiv.setAttribute("class", "hide");
     }
     else {
@@ -93,10 +98,20 @@ var getQuestion = function() {
     }
 };
 
-
-
-// show end page when time is up or all questions are answered
-
-// show page with highscores saved in localstorage
+var pushLocalStorage = function() {
+    let highscoreArray = [];
+    var previousScores = JSON.parse(localStorage.getItem('scores'));
+    highscoreArray = [{previousScores}];
+    highscoreArray.push({score: timeLeft, initials: initials.value});
+    localStorage.setItem('scores', JSON.stringify(highscoreArray));
+}
 
 startButton.addEventListener("click", startQuiz);
+SubmitInitialsButton.addEventListener("click", pushLocalStorage);
+
+// parse return value
+// assign to new variable array
+// push new score into array
+// update loal storage with new array
+// stringify updated array with new score
+

@@ -57,7 +57,7 @@ header a {
 
 .button {
     margin: 10px;
-    margin-left: 40%;
+    margin-left: 46%;
 }
 
 #question, #feedback {
@@ -77,23 +77,28 @@ header a {
 
 /* end of questons section */
 
-
-
-
-/* highscore html */
-#highscore-main {
-    padding-left: 40%;
-    margin-top: 150px;
+/* end page / enter highscore */
+#highscore-div {
+    text-align: center;
 }
 
-.button {
-    background-color: blueviolet;
-    color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 0px transparent;
-    border: 0px solid transparent;
-    text-shadow: 0px 0px 0px transparent;  
-    padding: 5px 10px; 
+#highscore-div.button {
+    display: none;
+}
+/* end end page/ enter highscore */
+
+/* highscore html */
+#highscore-main h1 {
+    margin-top: 150px;
+    text-align: center;
+}
+
+#highscore-main div {
+    text-align: center;
+}
+
+#highscore-main.button {
+    display: none;
 }
 
 .button a {

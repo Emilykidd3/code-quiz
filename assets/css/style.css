@@ -42,7 +42,7 @@ header a {
     padding: 40px 0 0 0;
 }
 
-#start-button {
+#start-button, .button {
     width: 8%;
     display: flex;
     justify-content: center;
@@ -55,6 +55,15 @@ header a {
     padding: 5px 0; 
 }
 
+.button {
+    margin: 10px;
+    margin-left: 40%;
+}
+
+#question, #feedback {
+    text-align: center;
+}
+
 .hide {
     display: none;
 }
@@ -65,7 +74,11 @@ header a {
     /* border-top: solid 3px gray; */
     margin-top: 20px;
 }
+
 /* end of questons section */
+
+
+
 
 /* highscore html */
 #highscore-main {

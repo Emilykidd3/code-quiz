@@ -38,13 +38,12 @@ var quizQuestions = [
 // create coundown for when startQuizButton is clicked
 var countdown = function() {
     var timeInterval = setInterval(function() {
-        if (timeLeft > 0) {
-            timerEl.textContent = timeLeft;
-            timeLeft--;
+        if (currentQuestionIndex === quizQuestions.length || timeLeft === 0) {
+            clearInterval(timeInterval);
         }
         else {
-            clearInterval(timeInterval);
-            // timerEl.innerHTML = "";
+            timerEl.textContent = timeLeft;
+            timeLeft--;
         }
     }, 1000);
 };
@@ -57,15 +56,21 @@ var startQuiz = function() {
     quizDiv.removeAttribute("class");
 }
 
+var endPage = function() {
+    window.alert="done!"
+}
+
 // make for loop for questions with an array of objects containing question, options, and answer
 var getQuestion = function() {
     if (currentQuestionIndex === quizQuestions.length) {
         endPage();
+        quizDiv.setAttribute("class", "hide");
     }
     else {
         questionEl.textContent = quizQuestions[currentQuestionIndex].question;
         for (var i = 0; i < quizQuestions[currentQuestionIndex].answers.length; i++) {
             var answerChoiceButton = document.createElement("button");
+            answerChoiceButton.setAttribute("class", "button")
             answerChoiceButton.textContent = quizQuestions[currentQuestionIndex].answers[i];
     
             answerChoiceButton.addEventListener("click", function(event) {
@@ -88,9 +93,7 @@ var getQuestion = function() {
     }
 };
 
-var endPage = function() {
-    window.alert="done!"
-}
+
 
 // show end page when time is up or all questions are answered
 

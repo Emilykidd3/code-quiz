@@ -59,47 +59,41 @@ var startQuiz = function() {
 
 // make for loop for questions with an array of objects containing question, options, and answer
 var getQuestion = function() {
-    questionEl.textContent = quizQuestions[currentQuestionIndex].question;
-    for (var i = 0; i < quizQuestions[currentQuestionIndex].answers.length; i++) {
-        var answerChoiceButton = document.createElement("button");
-        answerChoiceButton.textContent = quizQuestions[currentQuestionIndex].answers[i];
-
-        answerChoiceButton.addEventListener("click", function(event) {
-            var userChoice = event.target.innerText;
-            if (userChoice === quizQuestions[currentQuestionIndex].correctAnswer) {
-                // show they are correct
-                answerFeedback.textContent = "Correct!"
-            } else {
-                // show they are wrong
-                answerFeedback.textContent = "Wrong!"
-                // subtract time
-                timeLeft -= 10;
-            }
-        currentQuestionIndex++;
-        answerOptionsEl.textContent = "";
-        return getQuestion();
-        });
-    answerOptionsEl.appendChild(answerChoiceButton);
+    if (currentQuestionIndex === quizQuestions.length) {
+        endPage();
     }
+    else {
+        questionEl.textContent = quizQuestions[currentQuestionIndex].question;
+        for (var i = 0; i < quizQuestions[currentQuestionIndex].answers.length; i++) {
+            var answerChoiceButton = document.createElement("button");
+            answerChoiceButton.textContent = quizQuestions[currentQuestionIndex].answers[i];
     
+            answerChoiceButton.addEventListener("click", function(event) {
+                var userChoice = event.target.innerText;
+                if (userChoice === quizQuestions[currentQuestionIndex].correctAnswer) {
+                    // show they are correct
+                    answerFeedback.textContent = "Correct!"
+                } else {
+                    // show they are wrong
+                    answerFeedback.textContent = "Wrong!"
+                    // subtract time
+                    timeLeft -= 10;
+                }
+            currentQuestionIndex++;
+            answerOptionsEl.textContent = "";
+            return getQuestion();
+            });
+        answerOptionsEl.appendChild(answerChoiceButton);
+        }
+    }
 };
 
-// make coundown subtract time when an answer is incorrect
+var endPage = function() {
+    window.alert="done!"
+}
 
 // show end page when time is up or all questions are answered
 
 // show page with highscores saved in localstorage
 
 startButton.addEventListener("click", startQuiz);
-
-
-// for (var i = 0; i < quizQuestions.length; i++) {
-//     askQuestion.textContent = quizQuestions[i].question;
-//     for (var x = 0; x < quizQuestions[i].answers.length; x++) {
-//         var answerOptions = document.createElement("button");
-//         answerOptions.className = "answer-buttons";
-//         // i know this is not right but idk what to put LOL :/
-//         answerOptions.textContent = quizQuestions[i].answers[x];
-//         quizDiv.appendChild(answerOptions);
-//     }
-// }

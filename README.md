@@ -7,7 +7,7 @@ A website that tests basic JavaScript knowlege by asking multiple choice queston
 HTML, CSS, and JavaScript
 
 ## Website
-https://emilykidd3.github.io/password-generator/
+https://emilykidd3.github.io/code-quiz/
 
 ## Screenshot
 <img src="./assets/images/screenshot.png" width="50%" heigh="50%">

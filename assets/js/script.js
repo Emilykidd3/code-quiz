@@ -101,9 +101,15 @@ var getQuestion = function() {
 var pushLocalStorage = function() {
     let highscoreArray = [];
     var previousScores = JSON.parse(localStorage.getItem('scores'));
-    highscoreArray = [{previousScores}];
-    highscoreArray.push({score: timeLeft, initials: initials.value});
-    localStorage.setItem('scores', JSON.stringify(highscoreArray));
+    if (previousScores === null) {
+        highscoreArray.push({score: timeLeft, initials: initials.value});
+        localStorage.setItem('scores', JSON.stringify(highscoreArray));
+    }
+    else {
+        highscoreArray = previousScores;
+        highscoreArray.push({score: timeLeft, initials: initials.value});
+        localStorage.setItem('scores', JSON.stringify(highscoreArray));
+    }
 }
 
 startButton.addEventListener("click", startQuiz);

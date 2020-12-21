@@ -39,11 +39,13 @@ var quizQuestions = [
     }
 ];
 
-// create coundown for when startQuizButton is clicked
+// coundown for when startQuizButton is clicked
 var countdown = function() {
     var timeInterval = setInterval(function() {
         if (currentQuestionIndex === quizQuestions.length || timeLeft === 0) {
             clearInterval(timeInterval);
+            enterInitialsPage();
+            quizDiv.setAttribute("class", "hide");
         }
         else {
             timerEl.textContent = timeLeft;
@@ -52,6 +54,7 @@ var countdown = function() {
     }, 1000);
 };
 
+// runs countdown function and loads questions, removes start page div
 var startQuiz = function() {
     countdown();
     getQuestion();
@@ -60,15 +63,15 @@ var startQuiz = function() {
     quizDiv.removeAttribute("class");
 }
 
+// shows high score page with time left as score
 var enterInitialsPage = function() {
     highScorePage.removeAttribute("class");
     finalScore.textContent = timeLeft;
 }
 
-// make for loop for questions with an array of objects containing question, options, and answer
+// loops questions, subtracts time with wrong answer, and goes to next q
 var getQuestion = function() {
     if (currentQuestionIndex === quizQuestions.length) {
-        enterInitialsPage();
         quizDiv.setAttribute("class", "hide");
     }
     else {
@@ -98,6 +101,7 @@ var getQuestion = function() {
     }
 };
 
+// sends high score to local storage
 var pushLocalStorage = function() {
     let highscoreArray = [];
     var previousScores = JSON.parse(localStorage.getItem('scores'));
@@ -112,12 +116,6 @@ var pushLocalStorage = function() {
     }
 }
 
+// event listeners for start button and submit button
 startButton.addEventListener("click", startQuiz);
 SubmitInitialsButton.addEventListener("click", pushLocalStorage);
-
-// parse return value
-// assign to new variable array
-// push new score into array
-// update loal storage with new array
-// stringify updated array with new score
-

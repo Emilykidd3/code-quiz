@@ -18,6 +18,7 @@ var showHighscores = function() {
 
 var clearLocalStorage = function() {
     localStorage.clear();
+    location.reload();
 }
 
 showHighscores();
